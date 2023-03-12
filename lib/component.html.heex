@@ -1,0 +1,18 @@
+<div>
+  <%= if @editinplace_edit_id == @id do %>
+    <div style="width: 300px">
+      <.simple_form for={@form} phx-value-id={@id} phx-submit="save" phx-target={@myself}>
+        <.input field={@form[:value]} phx-hook="setFocus"/>
+        <.input type="hidden" field={@form[:id]}/>
+        <:actions>
+          <.button>Save</.button>
+          <.button type="button" phx-click="cancel" phx-target={@myself}>Cancel</.button>
+        </:actions>
+      </.simple_form>
+    </div>
+  <% else %>
+    <span id={"editinplace-#{@id}"} phx-target={@myself} style="border-bottom: 1px dashed blue;" phx-click="eip-start">
+      <%= @value %>
+    </span>
+  <% end %>
+</div>
